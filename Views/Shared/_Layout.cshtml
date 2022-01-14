@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>Rozklad home</title>
+</head>
+    
+<body>        
+    <div class="header">
+        <header>
+            <nav class="dws-menu"> 
+                <ul class="">
+                    <li> <a href="#"> Home </a></li>
+                    <li> <a asp-controller="Language" asp-action="Index"> Languages </a>
+                        <ul>
+                            <li><a asp-controller="Language" asp-action="AddForm"> Add language </a></li>
+                            <li><a asp-controller="Language" asp-action="Index"> Languages list </a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"> Teachers </a>
+                        <ul>
+                            <li><a asp-controller="Teacher" asp-action="AddForm"> Add teacher </a></li>
+                            <li><a asp-controller="Teacher" asp-action="Index"> Teachers list </a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"> Disciplines </a>
+                        <ul>
+                            <li><a href="#"> Add discipline </a></li>
+                            <li><a href="#"> Disciplines list </a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"> Groups </a>
+                        <ul>
+                            <li><a href="#"> Add group </a></li>
+                            <li><a href="#"> Groups list </a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"> Week days </a>
+                        <ul>
+                            <li><a href="#"> Add week day </a></li>
+                            <li><a href="#"> Week days list </a></li>
+                        </ul>
+                    </li>
+                </ul> 
+            </nav>
+        </header>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <div class="footer">        
+    </div>
+    
+</body>
+</html>

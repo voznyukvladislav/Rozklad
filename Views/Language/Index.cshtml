@@ -1,0 +1,44 @@
+﻿@model List<Language>;
+
+<script src="~/js//jQuery.js"></script>
+<script> 
+	function deleteLanguage(languageId) {
+		let confirmDelete = confirm("Are you sure want to delete this language?");
+		if(confirmDelete) {   
+			$.ajax({
+				type : "DELETE",
+				url: "/Language/Delete",
+				data:{
+					languageId: languageId
+				}
+			})			
+		}
+		return;
+	}
+</script>
+
+@{ int i = 1; }
+@foreach(Language language in Model)
+{
+	<div class="listItem">
+		<form method="post" asp-controller="Language">
+			<p class="formHeader"> #@(i) </p>
+			<hr>
+			<p class="listItemDescription"> 1. Language Id: @language.Id </p>
+			<p class="listItemDescription"> 2. Language name: @language.Name </p>
+				
+			<table style="margin: 0 auto; width: 80%;">
+				<tr>
+					<td>
+						@*<a asp-action="Delete" asp-route-languageId="@language.Id" class="formButton"> Delete </a>*@
+						<a onclick="deleteLanguage(@language.Id)" class="formButton"> Delete </a>
+					</td>
+					<td>
+						<a asp-action="EditForm" asp-route-languageId="@language.Id" class="formButton"> Edit </a>
+					</td>
+				</tr>
+			</table>                                
+		</form>
+	</div>
+	i++;
+}

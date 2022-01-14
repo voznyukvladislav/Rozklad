@@ -1,0 +1,11 @@
+﻿@model Language;
+
+<div class="addingForm">
+    <p class="formHeader"> Adding new language </p>
+    <hr>
+    <form method="post" asp-controller="Language" asp-action="Edit">
+        <input readonly type="number" name="language.Id" value="@Model.Id" class="formInput">
+        <input type="text" name="language.Name" value="@Model.Name" placeholder="Enter language name" class="formInput">
+        <input class="formButton" type="submit" value="Edit">
+    </form>
+</div>
