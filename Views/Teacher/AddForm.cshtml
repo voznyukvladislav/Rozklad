@@ -10,8 +10,8 @@
                 <p class="formHeader"> @(Model[i].Name): </p>
                 <input readonly type="number" name="languagesId[@i]" value="@Model[i].Id" style="display: none;">
                 <input type="text" name="teacher.TeacherNames[@i].Name" placeholder="Enter teacher's name" class="formInput">
-                <input type="text" name="teacher.TeacherNames[@i].Surname" placeholder="Enter teacher's patronymic" class="formInput">
-                <input type="text" name="teacher.TeacherNames[@i].Patronymic" placeholder="Enter teacher's surname" class="formInput">
+                <input type="text" name="teacher.TeacherNames[@i].Surname" placeholder="Enter teacher's surname" class="formInput">
+                <input type="text" name="teacher.TeacherNames[@i].Patronymic" placeholder="Enter teacher's patronymic" class="formInput">
             </div>
         }
         <input type="submit" class="formButton" value="Add teacher">

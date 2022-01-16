@@ -33,6 +33,25 @@ namespace Rozklad.Controllers
 			return View(languages);
         }
 
+		[HttpGet]
+		public IActionResult EditForm(int? id)
+        {
+			Teacher? teacher = _db.Teachers.Find(id);
+			if (teacher == null) return NotFound();
+			else
+            {
+				teacher.TeacherNames = (from names in _db.TeacherNames.Include(names => names.Language)
+									   where names.Teacher.Id == teacher.Id
+									   select names).ToList<TeacherName>();
+            }
+
+			List<Language> languages = _db.Languages.ToList();
+			ViewBag.languages = languages;
+			ViewBag.teacher = teacher;
+
+			return View();
+        }
+
 		[HttpPost]
 		public IActionResult Add(Teacher teacher, int[] languagesId)
 		{
@@ -44,6 +63,49 @@ namespace Rozklad.Controllers
 			}
 
 			_db.Teachers.Add(teacher);
+			_db.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
+
+		/*[HttpPost]
+		public IActionResult Edit(Teacher teacher, int teacherId, int[] languagesId)
+        {
+			teacher.Id = teacherId;
+			for(int i = 0; i < languagesId.Length; i++)
+			{
+				teacher.TeacherNames.ElementAt(i).Language = (from languages in _db.Languages.ToList()
+															  where languages.Id == languagesId[i]
+															  select languages).ToList()[0];
+			}
+
+			_db.Teachers.Update(teacher);
+			_db.SaveChanges();
+
+			return RedirectToAction("Index");
+        }*/
+
+		[HttpPost]
+		public IActionResult Edit(List<TeacherName> teacherNames, int teacherId, int[] languagesId)
+		{
+			Teacher? teacher = _db.Teachers.Find(teacherId);
+			teacher.TeacherNames = teacherNames;
+			if(teacher == null) return NotFound();
+			else
+            {
+				for (int i = 0; i < teacherNames.Count; i++)
+				{
+					teacher.TeacherNames.ElementAt(i).Language = (from languages in _db.Languages.ToList()
+																  where languages.Id == languagesId[i]
+																  select languages).ToList()[0];
+				}
+			}			
+
+			for(int i = 0; i < teacher.TeacherNames.Count; i++)
+            {
+				_db.TeacherNames.Update(teacher.TeacherNames.ElementAt(i));
+			}
+			
 			_db.SaveChanges();
 
 			return RedirectToAction("Index");

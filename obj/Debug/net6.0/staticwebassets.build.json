@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VHg+N3G6QzcUXL8LksDGbL5nNjVXwOEs9Crq2GCUih0=",
+  "Hash": "/KmloBZUFzncbXRNkEd6Z4+7mlfyXZm+1zLVygzt6Qo=",
   "Source": "Rozklad",
   "BasePath": "_content/Rozklad",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\accordion.js"
+    },
+    {
+      "Identity": "C:\\Users\\Vladislav\\source\\repos\\Rozklad\\Rozklad\\wwwroot\\js\\deleteAsync.js",
+      "SourceId": "Rozklad",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vladislav\\source\\repos\\Rozklad\\Rozklad\\wwwroot\\",
+      "BasePath": "_content/Rozklad",
+      "RelativePath": "js/deleteAsync.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\deleteAsync.js"
     },
     {
       "Identity": "C:\\Users\\Vladislav\\source\\repos\\Rozklad\\Rozklad\\wwwroot\\js\\jQuery.js",

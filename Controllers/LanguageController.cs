@@ -26,38 +26,44 @@ namespace Rozklad.Controllers
 		[HttpGet]
 		public IActionResult EditForm(int? languageId)
         {
-			Language language = _db.Languages.Find(languageId);
-			return View(language);
+			Language? language = _db.Languages.Find(languageId);
+			if (language == null) return NotFound();
+			else return View(language);
         }
 
 		[HttpPost]
 		public IActionResult Add(Language language)
 		{
-			_db.Languages.AddAsync(language);
+			_db.Languages.Add(language);
 			_db.SaveChanges();
+
+			// Adding empty names for new language
+			Language? lastLanguage = _db.Languages.OrderByDescending(id => id.Id).FirstOrDefault();
+
+			List<Teacher> teachers = _db.Teachers.ToList();
+			foreach(Teacher t in teachers)
+            {
+				TeacherName tName = new TeacherName() { Teacher = t, Language = lastLanguage, Name = null, Surname = null, Patronymic = null };
+				_db.TeacherNames.Add(tName);
+				_db.SaveChanges();
+            }
 
 			return RedirectToAction("Index");
 		}
 
 		[HttpDelete]
-		public IActionResult Delete(int? languageId)
+		public IActionResult Delete(int? id)
 		{
-			if(languageId == null)
-            {
-				return RedirectToAction("Index");
-			}
-
-			var language = _db.Languages.Find(languageId);
+			Language? language = _db.Languages.Find(id);
 			if (language == null)
             {
-
+				return NotFound();
             } else
             {
-				_db.Languages.Remove(_db.Languages.Find(languageId));
+				_db.Languages.Remove(language);
 				_db.SaveChanges();
-			}			
-
-			return RedirectToAction("Index");
+				return RedirectToAction("Index");
+			}
 		}
 
 		[HttpPost]
