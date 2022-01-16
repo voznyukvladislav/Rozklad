@@ -52,6 +52,22 @@ namespace Rozklad.Controllers
 			return View();
         }
 
+		[HttpDelete]
+		public IActionResult Delete(int? id)
+        {
+			Teacher? teacher = _db.Teachers.Find(id);
+			if (teacher == null) return NotFound();
+			else
+            {
+				List<TeacherName> teacherNames = _db.TeacherNames.ToList();
+				teacher.TeacherNames = teacherNames;
+
+				_db.Teachers.Remove(teacher);
+				_db.SaveChanges();
+            }
+			return RedirectToAction("Index");
+		}
+
 		[HttpPost]
 		public IActionResult Add(Teacher teacher, int[] languagesId)
 		{
@@ -68,23 +84,6 @@ namespace Rozklad.Controllers
 			return RedirectToAction("Index");
 		}
 
-		/*[HttpPost]
-		public IActionResult Edit(Teacher teacher, int teacherId, int[] languagesId)
-        {
-			teacher.Id = teacherId;
-			for(int i = 0; i < languagesId.Length; i++)
-			{
-				teacher.TeacherNames.ElementAt(i).Language = (from languages in _db.Languages.ToList()
-															  where languages.Id == languagesId[i]
-															  select languages).ToList()[0];
-			}
-
-			_db.Teachers.Update(teacher);
-			_db.SaveChanges();
-
-			return RedirectToAction("Index");
-        }*/
-
 		[HttpPost]
 		public IActionResult Edit(List<TeacherName> teacherNames, int teacherId, int[] languagesId)
 		{
@@ -98,12 +97,8 @@ namespace Rozklad.Controllers
 					teacher.TeacherNames.ElementAt(i).Language = (from languages in _db.Languages.ToList()
 																  where languages.Id == languagesId[i]
 																  select languages).ToList()[0];
+					_db.TeacherNames.Update(teacher.TeacherNames.ElementAt(i));
 				}
-			}			
-
-			for(int i = 0; i < teacher.TeacherNames.Count; i++)
-            {
-				_db.TeacherNames.Update(teacher.TeacherNames.ElementAt(i));
 			}
 			
 			_db.SaveChanges();
