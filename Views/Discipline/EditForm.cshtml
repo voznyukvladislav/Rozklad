@@ -1,0 +1,31 @@
+﻿@{
+	Discipline discipline = ViewBag.discipline;
+	List<DisciplineName> disciplineNames = discipline.DisciplineNames as List<DisciplineName>;
+	List<Language> languages = ViewBag.languages;   
+}
+
+<div class="addingForm">
+	<p class="formHeader"> Editing discipline </p>
+	<hr>
+	<form method="post" asp-controller="Discipline" asp-action="Edit">
+			
+		<input readonly type="number" name="discipline.Id" value="@discipline.Id" style="display: none;">	
+		@for(int i = 0; i < languages.Count; i++)
+		{
+			var disciplineName = (from name in disciplineNames
+									  where name.Language.Id == languages[i].Id
+									  select name);			
+
+			<div class="addingSubForm">
+				<p class="formHeader"> @(languages[i].Name): </p>
+				<input readonly type="number" name="discipline.disciplineNames[@i].DisciplineNameId" value="@disciplineNames?[i].DisciplineNameId" style="display: none;">
+				<input readonly type="number" name="discipline.disciplineNames[@i].Language.Id" value="@languages[i].Id" style="display: none;">
+				<input readonly type="number" name="discipline.disciplineNames[@i].Discipline.Id" value="@discipline.Id" style="display: none;">	
+
+				<input type="text" name="discipline.disciplineNames[@i].Name" value="@disciplineName?.ElementAt(0).Name" placeholder="Enter teacher's name"  class="formInput">
+			</div>
+		}
+
+		<input type="submit" class="formButton" value="Edit teacher">
+	</form>
+</div>

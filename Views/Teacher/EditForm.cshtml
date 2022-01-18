@@ -8,26 +8,7 @@
 	<p class="formHeader"> Editing teacher </p>
 	<hr>
 	<form method="post" asp-controller="Teacher" asp-action="Edit">
-		<input readonly type="number" name="teacherId" value="@teacher.Id" style="display: none;">
-		@*@for(int i = 0; i < languages.Count; i++)
-		{
-			var teacherName = (from name in teacherNames
-									  where name.Language.Id == languages[i].Id
-									  select name);
-			
-			int kappa = 0;
-			
-
-			<div class="addingSubForm">
-				<p class="formHeader"> @(languages[i].Name): </p>
-				<input readonly type="number" name="languagesId[@i]" value="@languages[i].Id" style="display: none;">
-				
-
-				<input type="text" name="teacher.TeacherNames[@i].Name" value="@teacherName?.ElementAt(0).Name" placeholder="Enter teacher's name"  class="formInput">
-				<input type="text" name="teacher.TeacherNames[@i].Surname" value="@teacherName?.ElementAt(0).Surname" placeholder="Enter teacher's surname" class="formInput">
-				<input type="text" name="teacher.TeacherNames[@i].Patronymic" value="@teacherName?.ElementAt(0).Patronymic" placeholder="Enter teacher's patronymic" class="formInput">
-			</div>
-		}*@
+		<input readonly type="number" name="teacherId" value="@teacher.Id" style="display: none;">		
 
 		@for(int i = 0; i < languages.Count; i++)
 		{

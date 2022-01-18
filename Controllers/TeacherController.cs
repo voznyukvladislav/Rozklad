@@ -43,13 +43,13 @@ namespace Rozklad.Controllers
 				teacher.TeacherNames = (from names in _db.TeacherNames.Include(names => names.Language)
 									   where names.Teacher.Id == teacher.Id
 									   select names).ToList<TeacherName>();
-            }
 
-			List<Language> languages = _db.Languages.ToList();
-			ViewBag.languages = languages;
-			ViewBag.teacher = teacher;
+				List<Language> languages = _db.Languages.ToList();
+				ViewBag.languages = languages;
+				ViewBag.teacher = teacher;
 
-			return View();
+				return View();
+			}			
         }
 
 		[HttpDelete]
@@ -59,8 +59,9 @@ namespace Rozklad.Controllers
 			if (teacher == null) return NotFound();
 			else
             {
-				List<TeacherName> teacherNames = _db.TeacherNames.ToList();
-				teacher.TeacherNames = teacherNames;
+				teacher.TeacherNames = (from names in _db.TeacherNames.Include(teacher => teacher.Teacher)
+												 where names.Teacher.Id == teacher.Id
+												 select names).ToList();
 
 				_db.Teachers.Remove(teacher);
 				_db.SaveChanges();

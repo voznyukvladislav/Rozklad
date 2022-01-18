@@ -1,0 +1,36 @@
+﻿@model List<Discipline>
+
+<script src="~/js/accordion.js"></script>
+<script src="~/js/jQuery.js"></script>
+<script src="~/js/deleteAsync.js"></script>
+
+<div>
+	@for(int i = 0; i < Model?.Count(); i++)
+	{
+		<div class="addingForm">
+			<p class="formHeader"> #@(i + 1) </p>
+			<p class="formHeader"> Discipline Id: @Model[i].Id </p>
+			<hr>
+
+			@for(int j = 0; j < Model[i].DisciplineNames.Count; j++)
+			{
+				string fullName = Model[i].DisciplineNames.ElementAt(j).Name;
+
+				<button class="accordion" onclick="openClose(this)"> @Model[i].DisciplineNames.ElementAt(j).Language.Name : @fullName </button>
+				<div class="accordionContent">
+					<p> 1. Name: @Model[i].DisciplineNames.ElementAt(j).Name </p>
+				</div>
+			}	
+			<table style="margin: 0 auto; width: 80%;">
+                <tr>
+                    <td>
+                        <a onclick="deleteAsync('Discipline/Delete', @Model[i].Id, 'discipline')" class="formButton"> Delete </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Discipline" asp-action="EditForm" asp-route-id="@Model[i].Id" class="formButton"> Edit </a>
+                    </td>
+                </tr>
+            </table>  
+		</div>
+	}
+</div>
