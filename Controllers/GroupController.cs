@@ -61,12 +61,7 @@ namespace Rozklad.Controllers
 
 		[HttpPost]
 		public IActionResult Edit(Group group)
-        {
-			/*group = _db.Groups
-				.Include(group => group.GroupNames)
-				.ThenInclude(group => group.Language)
-				.ThenInclude(group => group.Id)
-				.FirstOrDefault(group => group.Id == group.Id);*/
+        {			
 
 			for(int i = 0; i < group.GroupNames.Count; i++)
             {

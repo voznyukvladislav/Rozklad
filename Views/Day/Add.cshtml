@@ -1,0 +1,17 @@
+﻿@model List<Language>
+
+<div class="addingForm">
+    <p class="formHeader"> Adding new calendar day </p>
+    <hr>
+    <form method="post" asp-controller="Day" asp-action="Add">      
+        @for(int i = 0; i < Model?.Count; i++)
+        {
+            <div class="addingSubForm">
+                <p class="formHeader"> @(Model[i].Name): </p>
+                <input readonly type="number" name="day.DayNames[@i].Language.Id" value="@Model[i].Id" style="display: none;">
+                <input type="text" name="day.DayNames[@i].Name" placeholder="Enter day's name" class="formInput">
+            </div>
+        }
+        <input type="submit" class="formButton" value="Add day">
+    </form>
+</div>
