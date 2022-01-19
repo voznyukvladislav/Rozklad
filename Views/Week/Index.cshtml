@@ -1,0 +1,27 @@
+﻿@model List<Week>
+
+<script src="~/js/jQuery.js"></script>
+<script src="~/js/deleteAsync.js"></script>
+
+<div>
+	@for(int i = 0; i < Model?.Count(); i++)
+	{
+		<div class="addingForm">
+			<p class="formHeader"> #@(i + 1) </p>
+			<p class="formHeader"> Week Id: @Model[i].Id </p>
+			<hr>
+			<p> 1. Name: @Model[i].Name </p>
+
+			<table style="margin: 0 auto; width: 80%;">
+                <tr>
+                    <td>
+                        <a onclick="deleteAsync('Week/Delete', @Model[i].Id, 'week`s name')" class="formButton"> Delete </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Week" asp-action="Edit" asp-route-id="@Model[i].Id" class="formButton"> Edit </a>
+                    </td>
+                </tr>
+            </table>  
+		</div>
+	}
+</div>

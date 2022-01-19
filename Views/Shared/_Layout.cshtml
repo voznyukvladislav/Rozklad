@@ -20,28 +20,40 @@
                             <li><a asp-controller="Language" asp-action="Index"> Languages list </a></li>
                         </ul>
                     </li>
-                    <li> <a href="#"> Teachers </a>
+                    <li> <a asp-controller="Teacher" asp-action="Index"> Teachers </a>
                         <ul>
                             <li><a asp-controller="Teacher" asp-action="AddForm"> Add teacher </a></li>
                             <li><a asp-controller="Teacher" asp-action="Index"> Teachers list </a></li>
                         </ul>
                     </li>
-                    <li> <a href="#"> Disciplines </a>
+                    <li> <a asp-controller="Discipline" asp-action="Index"> Disciplines </a>
                         <ul>
                             <li><a asp-controller="Discipline" asp-action="AddForm"> Add discipline </a></li>
                             <li><a asp-controller="Discipline" asp-action="Index"> Disciplines list </a></li>
                         </ul>
                     </li>
-                    <li> <a href="#"> Groups </a>
+                    <li> <a asp-controller="Group" asp-action="Index"> Groups </a>
                         <ul>
                             <li><a asp-controller="Group" asp-action="AddForm"> Add group </a></li>
                             <li><a asp-controller="Group" asp-action="Index"> Groups list </a></li>
                         </ul>
                     </li>
-                    <li> <a href="#"> Week days </a>
+                    <li> <a asp-controller="Day" asp-action="Index"> Week days </a>
                         <ul>
                             <li><a asp-controller="Day" asp-action="Add"> Add week day </a></li>
                             <li><a asp-controller="Day" asp-action="Index"> Week days list </a></li>
+                        </ul>
+                    </li>
+                    <li> <a asp-controller="Week" asp-action="Index"> Week names </a>
+                        <ul>
+                            <li><a asp-controller="Week" asp-action="Add"> Add week name </a></li>
+                            <li><a asp-controller="Week" asp-action="Index"> Week names list </a></li>
+                        </ul>
+                    </li>
+                    <li> <a asp-controller="ClassTime" asp-action="Index"> Class times </a>
+                        <ul>
+                            <li><a asp-controller="ClassTime" asp-action="Add"> Add class time </a></li>
+                            <li><a asp-controller="ClassTime" asp-action="Index"> Class times list </a></li>
                         </ul>
                     </li>
                 </ul> 

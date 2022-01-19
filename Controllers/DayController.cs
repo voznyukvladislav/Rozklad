@@ -19,6 +19,7 @@ namespace Rozklad.Controllers
             List<Day> days = _db.Days
                 .Include(names => names.DayNames)
                 .ThenInclude(languages => languages.Language)
+                .OrderBy(names => names.OrderNum)
                 .ToList();
 
             return View(days);
@@ -42,6 +43,14 @@ namespace Rozklad.Controllers
                     where day.DayNames.ElementAt(i).Language.Id == language.Id
                     select language).First();
             }
+
+            if (_db.Days.Count() != 0)
+            {
+                day.OrderNum = _db.Days.Max(d => d.OrderNum); ;
+                day.OrderNum += 1;
+            }
+            else day.OrderNum = 1;
+            
 
             _db.Add(day);
             _db.SaveChanges();
@@ -77,6 +86,8 @@ namespace Rozklad.Controllers
             if (day == null) return NotFound();
             else
             {
+                ViewBag.DaysCount = _db.Days.Count();
+
                 return View(day);
             }
         }

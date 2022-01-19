@@ -6,6 +6,7 @@ namespace Rozklad.Models
 	{
 		[Key]
 		public int Id { get; set; }
+		public int OrderNum { get; set; }
 		public ICollection<DayName> DayNames { get; set;}
 		public ICollection<Schedule> Schedules { get; set; }
 		public Day()

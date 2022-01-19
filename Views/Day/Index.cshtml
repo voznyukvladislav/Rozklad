@@ -11,6 +11,7 @@
 			<p class="formHeader"> #@(i + 1) </p>
 			<p class="formHeader"> Day Id: @Model[i].Id </p>
 			<hr>
+			<p> Number in order: @Model[i].OrderNum </p>
 
 			@for(int j = 0; j < Model[i].DayNames.Count; j++)
 			{

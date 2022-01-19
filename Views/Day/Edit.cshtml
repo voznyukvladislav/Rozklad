@@ -1,10 +1,15 @@
 ﻿@model Day
 
+@{
+    int DaysCount = ViewBag.DaysCount;
+}
+
 <div class="addingForm">
     <p class="formHeader"> Editing calendar day </p>
     <hr>
     <form method="post" asp-controller="Day" asp-action="Edit">   
         <input readonly type="number" name="day.Id" value="@Model.Id" style="display: none;">
+        <input type="number" name="day.OrderNum" value="@Model.OrderNum" placeholder="Enter calendar day's order" class="formInput">
         @for(int i = 0; i < Model?.DayNames.Count; i++)
         {
             <div class="addingSubForm">
